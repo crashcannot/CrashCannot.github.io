@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Anti-Crash Plugin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashCannot | Advanced Minecraft Server Protection</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+    <style>
+        body { font-family: 'Inter', sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; }
+        header { text-align: center; margin-bottom: 3rem; }
+        .badge { background: #ff4757; color: white; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+        .feature-card { border: 1px solid #e2e8f0; padding: 1rem; border-radius: 8px; }
+        .cta-btn { display: inline-block; background: #2f3542; color: white; padding: 0.8rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; margin-top: 1rem; }
+        .cta-btn:hover { background: #57606f; }
+    </style>
 </head>
 <body>
-    <h1>Advanced Server Protection</h1>
-    <p>Preventing item data exploits, packet overloads, and server crashes.</p>
+
+    <header>
+        <h1>🛡️ CrashCannot</h1>
+        <p><strong>Enterprise-grade exploit prevention for high-performance Minecraft networks.</strong></p>
+        <span class="badge">Lightweight & Active</span>
+    </header>
+
+    <main>
+        <h2>Overview</h2>
+        <p>CrashCannot is a custom anti-crash utility engineered to mitigate severe packet overloads, malicious item data exploits (NBT/Component manipulation), and specific server-crashing payloads before they hit the main thread.</p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>📦 Item Data Sanitization</h3>
+                <p>Intercepts and drops oversized item payloads, preventing inventory-based client exploits and chunk-loading freezes.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⚡ Packet Rate Limiting</h3>
+                <p>Identifies automated macro spam and bad packet injection, silently handling malicious traffic without dropping clean player connections.</p>
+            </div>
+        </div>
+
+        <section style="margin-top: 3rem; text-align: center;">
+            <h2>Protect Your Network</h2>
+            <p>Ensure your community stays online. Get the latest release optimized for modern exploit profiles.</p>
+            <a href="#" class="cta-btn">Download Latest Release (.jar)</a>
+        </section>
+    </main>
+
+    <footer style="margin-top: 4rem; border-top: 1px solid #e2e8f0; padding-top: 1rem; font-size: 0.9rem; text-align: center; color: #747d8c;">
+        <p>© 2026 CrashCannot Development. Built for performance and security.</p>
+    </footer>
+
 </body>
 </html>
