@@ -27,6 +27,10 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-main);
@@ -57,6 +61,32 @@
             position: relative;
         }
 
+        /* --- Sticky Navigation Bar --- */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
         /* --- Animations --- */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(16px); }
@@ -79,7 +109,7 @@
         /* --- Hero Section --- */
         header {
             text-align: center;
-            padding-top: 6rem;
+            padding-top: 5rem;
             padding-bottom: 4rem;
         }
 
@@ -115,12 +145,16 @@
             margin: 0 auto;
         }
 
-        /* --- Grid Layouts --- */
+        /* --- Sections & Cards --- */
+        section {
+            padding-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
         .grid-two-col {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 2rem;
         }
 
         .card {
@@ -129,6 +163,7 @@
             border-radius: 14px;
             padding: 2rem;
             transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            height: 100%;
         }
 
         .card:hover {
@@ -138,10 +173,10 @@
         }
 
         h2 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 600;
             letter-spacing: -0.02em;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
             gap: 0.6rem;
@@ -168,6 +203,7 @@
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
         }
 
         .v-badge.soon {
@@ -176,15 +212,13 @@
             border: 1px solid rgba(234, 179, 8, 0.2);
         }
 
-        /* --- Interactive Download Button --- */
+        /* --- Download Hub Styles --- */
         .cta-box {
             text-align: center;
-            padding: 3.5rem 2rem;
-            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.07), transparent 70%);
+            padding: 4rem 2rem;
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.07), transparent 70%), var(--bg-card);
             border-radius: 16px;
             border: 1px solid var(--border-color);
-            margin-top: 3rem;
-            margin-bottom: 6rem;
         }
 
         .download-btn {
@@ -200,6 +234,7 @@
             text-decoration: none;
             transition: transform 0.2s ease, background-color 0.2s ease;
             box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
+            margin: 1rem 0;
         }
 
         .download-btn:hover {
@@ -215,17 +250,25 @@
             font-size: 0.85rem;
             border-top: 1px solid var(--border-color);
             padding-top: 2rem;
+            margin-top: 4rem;
         }
 
         @media (max-width: 640px) {
             h1 { font-size: 2.5rem; }
-            header { padding-top: 4rem; }
+            header { padding-top: 3rem; }
+            nav { gap: 1rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="bg-grid"></div>
+
+    <nav>
+        <a href="#features">🛡️ Overview</a>
+        <a href="#about">👤 About the Developer</a>
+        <a href="#download">📥 Download Hub</a>
+    </nav>
 
     <div class="container">
         
@@ -237,45 +280,54 @@
             <p class="subtitle">High-performance exploit prevention built to sanitize packet payloads and prevent server overloading.</p>
         </header>
 
-        <div class="grid-two-col">
-            <div class="card animate-fade delay-1">
-                <h2>📦 Item Data Optimization</h2>
-                <p>Identifies, intercepts, and safely drops bloated structural data payloads or NBT-heavy items before they cross the network thread to freeze chunk loaders.</p>
-            </div>
-            
-            <div class="card animate-fade delay-1">
-                <h2>⚡ Packet Rate Limiting</h2>
-                <p>Silently drops automated crash script frequencies and abnormal macro inject patterns without increasing network latency or interrupting clean player connections.</p>
-            </div>
-        </div>
-
-        <div class="card animate-fade delay-2" style="margin-bottom: 2rem;">
-            <h2>👤 About the Developer</h2>
-            <p><strong>Hi, I'm Derrik Sanchez.</strong></p>
-            <p>I have been developing software for over 6 years. Like many of you reading this, I've spent plenty of time running and hosting Minecraft servers. I know exactly what it feels like to have your community interrupted or crashed repeatedly by exploiters trying to find loops, and I absolutely hate it.</p>
-            <p>Instead of just taking the problem, I decided to fix it. For the past 3 years, I have engineered and refined <strong>CrashCannot</strong> to provide clean, definitive fixes against network overloads.</p>
-            
-            <div style="margin-top: 1.5rem;">
-                <p style="font-size: 0.9rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">Version Architecture:</p>
-                <div class="version-list">
-                    <span class="v-badge">v1.21.1</span>
-                    <span class="v-badge">v1.21.11</span>
-                    <span class="v-badge soon">v26.1 - v26.2 (Coming Soon)</span>
+        <section id="features" class="animate-fade delay-1">
+            <div class="grid-two-col">
+                <div class="card">
+                    <h2>📦 Item Data Optimization</h2>
+                    <p>Identifies, intercepts, and safely drops bloated structural data payloads or NBT-heavy items before they cross the network thread to freeze chunk loaders.</p>
+                </div>
+                
+                <div class="card">
+                    <h2>⚡ Packet Rate Limiting</h2>
+                    <p>Silently drops automated crash script frequencies and abnormal macro inject patterns without increasing network latency or interrupting clean player connections.</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="cta-box animate-fade delay-3">
-            <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Secure Your Infrastructure</h3>
-            <p style="max-width: 500px; margin: 0 auto 1.5rem auto;">Deploy the production-ready binary compiled directly for modern network defense frameworks.</p>
-            <a href="#" class="download-btn">
-                Download Latest Release (.jar)
-            </a>
-            <p style="font-size: 0.8rem; color: #475569; margin-top: 1rem;">Issues or implementation bugs? Submit a formal ticket via the repository tracker.</p>
-        </div>
+        <section id="about" class="animate-fade delay-2">
+            <div class="card">
+                <h2>👤 About the Developer</h2>
+                <p><strong>Hi, I'm Derrik Sanchez.</strong></p>
+                <p>I have been developing software for over 6 years. Like many of you reading this, I've spent plenty of time running and hosting Minecraft servers. I know exactly what it feels like to have your community interrupted or crashed repeatedly by exploiters trying to find loops, and I absolutely hate it.</p>
+                <p style="margin-bottom: 1.5rem;">Instead of just taking the problem, I decided to fix it. For the past 3 years, I have engineered and refined <strong>CrashCannot</strong> to provide clean, definitive fixes against network overloads.</p>
+                
+                <div>
+                    <p style="font-size: 0.9rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">Version Architecture Compatibility:</p>
+                    <div class="version-list">
+                        <span class="v-badge">v1.21.1</span>
+                        <span class="v-badge">v1.21.11</span>
+                        <span class="v-badge soon">v26.1 - v26.2 (Coming Soon)</span>
+                    </div>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 1.2rem; font-style: italic;">We are here to help you out the best we can and we will provide active support in our GitHub repository tracker.</p>
+            </div>
+        </section>
+
+        <section id="download" class="animate-fade delay-3">
+            <div class="cta-box">
+                <h2 style="justify-content: center;">📥 Secure Your Infrastructure</h2>
+                <p style="max-width: 550px; margin: 0 auto 1.5rem auto;">Deploy the production-ready binary compiled directly for modern network defense frameworks.</p>
+                
+                <a href="#" class="download-btn">
+                    Download Latest Release (.jar)
+                </a>
+                
+                <p style="font-size: 0.8rem; color: #475569; margin-top: 1rem;">Facing implementation bugs or packet conflicts? Open an official tracking ticket via the repository dashboard.</p>
+            </div>
+        </section>
 
         <footer>
-            <p>© 2026 CrashCannot Development. Open Source Security Utilities.</p>
+            <p>© 2026 CrashCannot Development. Maintained by Derrik Sanchez. Open Source Security Utilities.</p>
         </footer>
 
     </div>
