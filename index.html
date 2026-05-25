@@ -61,11 +61,11 @@
             position: relative;
         }
 
-        /* --- Sticky Navigation Bar --- */
+        /* --- Navigation Bar --- */
         nav {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
             padding: 1.2rem 0;
             border-bottom: 1px solid var(--border-color);
             background: rgba(11, 15, 25, 0.8);
@@ -80,11 +80,12 @@
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 500;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
 
         nav a:hover {
             color: var(--accent);
+            transform: translateY(-1px);
         }
 
         /* --- Animations --- */
@@ -110,7 +111,7 @@
         header {
             text-align: center;
             padding-top: 5rem;
-            padding-bottom: 4rem;
+            padding-bottom: 3rem;
         }
 
         .shield-badge {
@@ -147,8 +148,8 @@
 
         /* --- Sections & Cards --- */
         section {
-            padding-top: 2rem;
-            margin-bottom: 2rem;
+            padding-top: 4rem;
+            margin-bottom: 1rem;
         }
 
         .grid-two-col {
@@ -163,7 +164,6 @@
             border-radius: 14px;
             padding: 2rem;
             transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-            height: 100%;
         }
 
         .card:hover {
@@ -188,58 +188,80 @@
             margin-bottom: 1rem;
         }
 
-        /* --- Version Badges --- */
-        .version-list {
+        /* --- Animated Version List Area --- */
+        .version-download-list {
             display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-top: 0.5rem;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
-        .v-badge {
+        .version-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(19, 26, 44, 0.6);
+            border: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .version-row:hover {
+            transform: scale(1.015);
+            background: var(--bg-card);
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 4px 20px -5px rgba(56, 189, 248, 0.1);
+        }
+
+        .version-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .version-tag {
             font-family: 'Geist Mono', monospace;
-            font-size: 0.85rem;
-            background: #1e293b;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 1rem;
+            font-weight: 600;
             color: var(--text-primary);
         }
 
-        .v-badge.soon {
-            background: rgba(234, 179, 8, 0.1);
-            color: #facc15;
-            border: 1px solid rgba(234, 179, 8, 0.2);
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
         }
 
-        /* --- Download Hub Styles --- */
-        .cta-box {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.07), transparent 70%), var(--bg-card);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
+        .status-dot.soon {
+            background-color: #facc15;
+            box-shadow: 0 0 8px #facc15;
         }
 
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background-color: var(--text-primary);
+        /* --- Small Row Buttons --- */
+        .row-download-btn {
+            background: var(--text-primary);
             color: var(--bg-main);
+            font-size: 0.85rem;
             font-weight: 600;
-            font-size: 1.05rem;
-            padding: 0.9rem 2.2rem;
-            border-radius: 8px;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
             text-decoration: none;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
-            margin: 1rem 0;
+            transition: background-color 0.2s ease, transform 0.2s ease;
         }
 
-        .download-btn:hover {
-            transform: scale(1.02);
-            background-color: #e2e8f0;
+        .row-download-btn:hover {
+            background-color: var(--accent);
+            transform: scale(1.03);
+        }
+
+        .row-download-btn.disabled {
+            background: #1e293b;
+            color: #475569;
+            cursor: not-allowed;
+            pointer-events: none;
         }
 
         /* --- Footer --- */
@@ -250,13 +272,15 @@
             font-size: 0.85rem;
             border-top: 1px solid var(--border-color);
             padding-top: 2rem;
-            margin-top: 4rem;
+            margin-top: 6rem;
         }
 
         @media (max-width: 640px) {
             h1 { font-size: 2.5rem; }
             header { padding-top: 3rem; }
-            nav { gap: 1rem; }
+            nav { gap: 1.2rem; }
+            .version-row { flex-direction: column; gap: 1rem; align-items: flex-start; }
+            .row-download-btn { width: 100%; text-align: center; }
         }
     </style>
 </head>
@@ -265,8 +289,8 @@
     <div class="bg-grid"></div>
 
     <nav>
-        <a href="#features">🛡️ Overview</a>
-        <a href="#about">👤 About the Developer</a>
+        <a href="#overview">🛡️ Overview</a>
+        <a href="#about">👤 About Me</a>
         <a href="#download">📥 Download Hub</a>
     </nav>
 
@@ -280,7 +304,7 @@
             <p class="subtitle">High-performance exploit prevention built to sanitize packet payloads and prevent server overloading.</p>
         </header>
 
-        <section id="features" class="animate-fade delay-1">
+        <section id="overview" class="animate-fade delay-1">
             <div class="grid-two-col">
                 <div class="card">
                     <h2>📦 Item Data Optimization</h2>
@@ -299,30 +323,46 @@
                 <h2>👤 About the Developer</h2>
                 <p><strong>Hi, I'm Derrik Sanchez.</strong></p>
                 <p>I have been developing software for over 6 years. Like many of you reading this, I've spent plenty of time running and hosting Minecraft servers. I know exactly what it feels like to have your community interrupted or crashed repeatedly by exploiters trying to find loops, and I absolutely hate it.</p>
-                <p style="margin-bottom: 1.5rem;">Instead of just taking the problem, I decided to fix it. For the past 3 years, I have engineered and refined <strong>CrashCannot</strong> to provide clean, definitive fixes against network overloads.</p>
-                
-                <div>
-                    <p style="font-size: 0.9rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">Version Architecture Compatibility:</p>
-                    <div class="version-list">
-                        <span class="v-badge">v1.21.1</span>
-                        <span class="v-badge">v1.21.11</span>
-                        <span class="v-badge soon">v26.1 - v26.2 (Coming Soon)</span>
-                    </div>
-                </div>
+                <p>Instead of just taking the problem, I decided to fix it. For the past 3 years, I have engineered and refined <strong>CrashCannot</strong> to provide clean, definitive fixes against network overloads.</p>
                 <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 1.2rem; font-style: italic;">We are here to help you out the best we can and we will provide active support in our GitHub repository tracker.</p>
             </div>
         </section>
 
         <section id="download" class="animate-fade delay-3">
-            <div class="cta-box">
-                <h2 style="justify-content: center;">📥 Secure Your Infrastructure</h2>
-                <p style="max-width: 550px; margin: 0 auto 1.5rem auto;">Deploy the production-ready binary compiled directly for modern network defense frameworks.</p>
+            <div class="card" style="background: radial-gradient(circle at top, rgba(56, 189, 248, 0.03), transparent 80%), var(--bg-card);">
+                <h2>📥 Download Hub</h2>
+                <p>Select your server network target version below to pull the optimized production binary build framework.</p>
                 
-                <a href="#" class="download-btn">
-                    Download Latest Release (.jar)
-                </a>
-                
-                <p style="font-size: 0.8rem; color: #475569; margin-top: 1rem;">Facing implementation bugs or packet conflicts? Open an official tracking ticket via the repository dashboard.</p>
+                <div class="version-download-list">
+                    <div class="version-row">
+                        <div class="version-info">
+                            <div class="status-dot"></div>
+                            <span class="version-tag">Minecraft 1.21.11</span>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">(Latest Build)</span>
+                        </div>
+                        <a href="#" class="row-download-btn">Download .jar</a>
+                    </div>
+
+                    <div class="version-row">
+                        <div class="version-info">
+                            <div class="status-dot"></div>
+                            <span class="version-tag">Minecraft 1.21.1</span>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">(Stable)</span>
+                        </div>
+                        <a href="#" class="row-download-btn">Download .jar</a>
+                    </div>
+
+                    <div class="version-row" style="opacity: 0.6;">
+                        <div class="version-info">
+                            <div class="status-dot soon"></div>
+                            <span class="version-tag" style="color: var(--text-secondary);">Minecraft 26.1 - 26.2</span>
+                            <span style="font-size: 0.8rem; color: #facc15;">(In Development)</span>
+                        </div>
+                        <a href="#" class="row-download-btn disabled">Coming Soon</a>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.8rem; color: #475569; margin-top: 2rem; text-align: center;">Facing implementation bugs or packet conflicts? Submit an official tracking ticket via the repository dashboard.</p>
             </div>
         </section>
 
